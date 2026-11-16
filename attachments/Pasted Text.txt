@@ -1,0 +1,74 @@
+Crie um site completo de votação temático de Naruto chamado "Vila Oculta — Sorteio das Nações". 
+O grande diferencial é que o usuário NÃO escolhe a vila: ele apenas clica em um botão 
+("Girar o Destino" / "Descobrir Minha Vila") e o sistema sorteia aleatoriamente uma vila. 
+Em seguida, aparece uma tela de resultado com a frase destacada: 
+"Você é da Vila de [NOME DA VILA]!" junto com o logo/símbolo da vila, e o voto é 
+automaticamente contabilizado para aquela vila.
+
+### 🏯 Vilas participantes (6 no total)
+1. Konohagakure (Vila da Folha) — símbolo da folha, cor verde
+2. Sunagakure (Vila da Areia) — símbolo da areia, cor bege/dourado
+3. Kirigakure (Vila da Névoa) — símbolo da névoa, cor azul
+4. Kumogakure (Vila da Nuvem) — símbolo da nuvem, cor amarelo/laranja
+5. Iwagakure (Vila da Pedra) — símbolo da pedra, cor marrom
+6. Amegakure (Vila da Chuva) — símbolo da chuva, cor cinza/azul-escuro
+
+### 📄 Página 1 — "Votação / Sorteio" (Home)
+- Header com logo do site (um emblema estilo símbolo de vila ninja) e nome "Vila Oculta".
+- Hero com título chamativo: "Qual vila você pertence?" e subtítulo explicando que o 
+  destino escolhe, não você.
+- Grade com os 6 cards das vilas (logo/símbolo + nome + cor temática). 
+  Os cards são apenas visuais/informativos — NÃO são clicáveis para escolha.
+- Botão central grande e destacado: "🍥 Girar o Destino" ou "Descobrir Minha Vila".
+- Ao clicar no botão:
+  - Animação de "sorteio" (roleta girando entre os 6 símbolos, ~2-3 segundos, 
+    com efeito de embaralhamento entre as vilas).
+  - Resultado final em modal ou tela animada: símbolo grande da vila sorteada + 
+    texto "Você é da Vila de [NOME]!" + nome da nação + uma frase curta estilo 
+    jutsus/provérbio da vila.
+  - Botão "Votar novamente" (opcional, mas com cooldown de 10s ou aviso de que 
+    já votou) e botão "Ver Resultados".
+- O voto é contabilizado automaticamente assim que a vila é sorteada.
+- Design: tema ninja/scroll, fundo escuro com texturas, fonte estilizada, 
+  responsivo (mobile-first), animações suaves com Framer Motion (ou CSS).
+
+### 📊 Página 2 — "Resultados / Placar dos Votos"
+- Página separada acessível pelo menu (link "Ver Votos" ou "Placar").
+- Exibe APENAS a contagem de votos — sem formulário, sem sorteio.
+- Mostrar:
+  - Ranking das 6 vilas com posição (1º, 2º, 3º...).
+  - Total de votos por vila com número grande.
+  - Barra de progresso horizontal proporcional ao total (com a cor de cada vila).
+  - Porcentagem de cada vila sobre o total geral.
+  - Total geral de votos no topo.
+- Atualização em tempo real (polling a cada 5s ou WebSocket/Realtime se usar Supabase).
+- Design consistente com a home, cards com hover, medalhas para o top 3 (🥇🥈🥉).
+- Botão "Voltar para Votação".
+
+### ⚙️ Requisitos técnicos
+- Stack: React + Tailwind CSS (ou Next.js) + Framer Motion para animações.
+- Persistência de votos: use Supabase, Firebase ou uma API simples (pode simular com 
+  localStorage + backend mock se não houver banco configurado — mas prefira banco real).
+- Sistema de sorteio: distribuição aleatória uniforme entre as 6 vilas 
+  (Math.random() ou crypto.getRandomValues()).
+- Anti-duplicação simples: usar localStorage/cookie para limitar a 1 voto por 
+  sessão (com aviso amigável se tentar votar de novo).
+- Logos/símbolos: usar SVGs customizados ou ícones (Lucide, ou SVGs desenhados) 
+  representando cada símbolo de vila — não usar imagens protegidas por direitos autorais.
+- Rotas: "/" (votação) e "/resultados" (placar).
+- Código organizado em componentes: VillageCard, SpinButton, ResultModal, 
+  VoteResults, ProgressBar, Header, Footer.
+- Footer com aviso: "Projeto de fã, sem fins comerciais — Naruto © Masashi Kishimoto".
+
+### 🎨 Paleta e estilo
+- Fundo escuro (#0f0f14 / #1a1a24) com detalhes em dourado (#d4af37) e vermelho selo (#b91c1c).
+- Efeito de "selo ninja" nos cards, bordas sutis, glow nos botões.
+- Tipografia: uma fonte display estilizada para títulos (ex: "Cinzel" ou "Rye") 
+  e uma sans-serif limpa para textos.
+- Microinterações: hover nos cards (leve elevação + glow da cor da vila), 
+  animação de roleta no sorteio, confete ou partículas no resultado.
+
+### ✅ Entregável
+Site funcional com as 2 páginas, sorteio animado, contagem de votos persistida 
+e página de resultados com ranking e barras de progresso. Entregue o código completo 
+e pronto para rodar, com instruções de setup.

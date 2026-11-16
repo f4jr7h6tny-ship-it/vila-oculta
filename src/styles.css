@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0f0f14;
+  --color-panel: #1a1a24;
+  --color-parchment: #efe6d2;
+  --color-dust: #b7ad98;
+  --color-gold: #d4af37;
+  --color-seal: #b91c1c;
+  --color-line: #3a3428;
+  --color-leaf: #3f8f4e;
+  --color-sand: #c4a574;
+  --color-mist: #4aa3c7;
+  --color-cloud: #e08a2c;
+  --color-stone: #8d5e3c;
+  --color-rain: #6d7d96;
+  --font-display: "Cinzel", "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    background: var(--color-ink);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-ink);
+    color: var(--color-parchment);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+}
+
+.scroll-field {
+  background-image:
+    radial-gradient(
+      ellipse 90% 46% at 50% -8%,
+      color-mix(in oklab, var(--color-seal) 32%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 42% 28% at 100% 100%,
+      color-mix(in oklab, var(--color-gold) 14%, transparent),
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 23px,
+      color-mix(in oklab, var(--color-gold) 8%, transparent) 24px
+    );
+}
+
+.village-card {
+  border: 1px solid color-mix(in oklab, var(--color-gold) 28%, transparent);
+  background: color-mix(in oklab, var(--color-panel) 88%, black);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-gold) 12%, transparent);
+  transition:
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out,
+    border-color 200ms ease-out;
+}
+
+.village-card:hover {
+  transform: translateY(-4px);
+}
+
+.village-card-leaf:hover {
+  border-color: color-mix(in oklab, var(--color-leaf) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-leaf) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-leaf) 28%, transparent);
+}
+
+.village-card-sand:hover {
+  border-color: color-mix(in oklab, var(--color-sand) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-sand) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-sand) 28%, transparent);
+}
+
+.village-card-mist:hover {
+  border-color: color-mix(in oklab, var(--color-mist) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-mist) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-mist) 28%, transparent);
+}
+
+.village-card-cloud:hover {
+  border-color: color-mix(in oklab, var(--color-cloud) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-cloud) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-cloud) 28%, transparent);
+}
+
+.village-card-stone:hover {
+  border-color: color-mix(in oklab, var(--color-stone) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-stone) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-stone) 28%, transparent);
+}
+
+.village-card-rain:hover {
+  border-color: color-mix(in oklab, var(--color-rain) 75%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-rain) 35%, transparent),
+    0 10px 28px color-mix(in oklab, var(--color-rain) 28%, transparent);
+}
+
+.seal-btn {
+  background: var(--color-seal);
+  color: var(--color-parchment);
+  border: 1px solid color-mix(in oklab, var(--color-gold) 80%, white);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--color-gold) 35%, transparent),
+    0 0 24px color-mix(in oklab, var(--color-seal) 45%, transparent);
+}
+
+.seal-btn:disabled {
+  opacity: 0.7;
+}
+
+.ghost-btn {
+  border: 1px solid color-mix(in oklab, var(--color-gold) 45%, transparent);
+  color: var(--color-parchment);
+  background: color-mix(in oklab, var(--color-ink) 70%, transparent);
+}
+
+.destiny-ring {
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in oklab, var(--color-gold) 70%, transparent) 0 2deg,
+    transparent 2deg 60deg
+  );
+}
+
+.destiny-ring.is-spinning {
+  animation: ring-spin 0.55s linear infinite;
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.flake {
+  animation: flake-fall 1.5s ease-in forwards;
+}
+
+@keyframes flake-fall {
+  0% {
+    transform: translateY(-8px) rotate(0deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(240px) rotate(160deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destiny-ring.is-spinning,
+  .flake,
+  .village-card {
+    animation: none;
+    transition: none;
+  }
+
+  .village-card:hover {
+    transform: none;
+  }
+}
